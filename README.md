@@ -1,2 +1,2 @@
-# Suoer Smash Bros Forum
+# Super Smash Bros Forum
 This is the read me
