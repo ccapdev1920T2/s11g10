@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Profile</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/public/css/mainCSS.css">            
+       <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="/public/js/navjs.js"></script>
+        <script src="/public/js/newsfeed.js"></script>
+        
+    </head>
+    <body>
+         <nav class="navbar navbar-light">
+            
+            <image src="/public/images/ssbulogo.png" class="navbar-brand" alt="brand logo">
+            
+            <form class="form-inline" method="post">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <!-- <img src="/public/images/icons/search.svg" id="searchIcon" type="submit"> -->
+                <input type="image" src="/images/icons/search.svg" alt="Submit" id="searchIcon">
+            </form>
+
+            <div class="btn-group" role="group" aria-label="Basic example">          
+                <button type="button" class="btn  btn-outline-dark" onclick="location.href='/profile/{{username}}';">
+                    <img src="{{profilePic}}" id="displayPic">
+                    {{name}}
+                </button>
+                <button type="button" class="btn btn-ss btn-outline-dark" id="btn-Home">Home</button>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item " href="/Notification">
+                        <img src="/images/icons/bell2.svg" id="notifIcon" class="dropIcon"> 
+                        Notifications
+                    </a>
+                    <a class="dropdown-item" href="/EditProfile">
+                        <img src="/images/icons/edit-32.svg" id="editIcon" class="dropIcon"> 
+                        Edit Profile
+                    </a>
+                    <a class="dropdown-item" href="/SavedFollowed">
+                        <img src="/images/icons/bookmark2.svg" id="savedIcon" class="dropIcon"> 
+                        Saved and Followed
+                    </a>
+                    <a class="dropdown-item" href="/getLogout">
+                        <img src="/images/icons/power.svg" id="savedIcon" class="dropIcon"> 
+                        Log-out
+                    </a>
+                </div>
+            </div>     
+        </nav>
+        
+        <div id="container" >
+            <div id="div1"></div>
+            <div id="div2">
+                <h1 id="pageTitle">Profile</h1>
+                <div id="woymCard" class="profCard">
+                    <img src="{{pprofilePic}}" id="profPic">
+                    <div id="walaGanap">
+                        <h4>{{pname}}</h4>
+                        <label id="viewNickName">@{{pusername}}</label><br>
+                        <b><label>Nintentdo ID:&nbsp;</label></b><label id="viewNinId">{{puserid}}</label><br>
+                            <b><label>Main/s:&nbsp;</label></b>
+                                <label id="viewMains">
+                                {{pmain}}
+                                </label><br>
+                            <b>
+                                <label>Secondary/s:&nbsp;</label></b><label id="viewSeconds">
+                                 {{psecondary}}
+                                </label><br>
+                    </div>
+                </div>
+                <div id="ppp" class="profilesort">
+                            <div id="sorter">
+                                Sort By:                                
+                                
+                                <button type="button" class="btn btn-comment">
+                                    <image src="/images/icons/thumbs-up.svg">
+                                    Like
+                                </button>
+                                <button type="button" class="btn btn-comment">
+                                    <image src="/images/icons/thumbs-down.svg">
+                                    Dislike
+                                </button>
+                                <button type="button" class="btn btn-comment">
+                                    <image src="/images/icons/plus-circle.svg">
+                                    Newest
+                                </button>
+                                
+                            </div>
+                 </div>  
+                
+                <div id="divCon2" class="divcon2">
+
+{{#each posts}}
+                <div id="newsContainer" onclick="location.href='/post/{{_id}}';">
+                    <div class="extra">
+                        <label id="nfPoster">posted by/ <img src="{{postusericon}}" id="postusericon">  <a href="/Profile/{{postbyName}}" class="profLink">@{{postbyName}}</a> {{postDate}} {{postTime}}</label>
+                        <h3 id="newTitle">{{this.postTitle}}</h3>
+                        <p id="newsContent">
+                            {{this.content}}
+                        </p>
+    {{#each this.image}}
+                        <image id="postImage" class="nfPic" src="{{this.img}}">
+    {{/each}}
+                    </div>
+                    
+                    <div class="btn-group nfButtons"  role="group" aria-label="Basic podt functions">
+                        <button type="button" class="btn btn-icon" id="like">
+                            <image src="/images/icons/thumbs-up.svg" class="postIcons">
+                        </button>
+                        {{nLikes}}
+                        <button type="button" class="btn btn-icon" id="dislike">
+                            <image src="/images/icons/thumbs-down.svg" class="postIcons">
+                        </button>
+                        {{nDislikes}}
+                        <button type="button" class="btn btn-icon" id="commentButton">
+                            <image src="/images/icons/message-square.svg" class="postIcons">
+                        </button>
+<!--                         <button type="button" class="btn btn-icon" id="bookmark">
+                            <image src="/images/icons/bookmark2.svg" class="postIcons">
+                        </button>
+                        <button type="button" class="btn btn-icon" id="follow">
+                            <image src="/images/icons/bell2.svg" class="postIcons">
+                        </button> -->
+                    </div>
+                </div>
+
+
+
+{{/each}}
+
+
+
+
+<!--                     <div id="newsContainer">
+                        <div class="extra">
+                            <label id="nfPoster">posted by/ <a href="Profile">Jose Aquino</a></label>
+                            <h3 id="newTitle">Mario beats Peach</h3>
+                            <p id="newsContent">
+                                In a hot match Mario dethroned Peach from being a top tier. As you can see this match was the most awaited.
+                                Mario defeated Peach in a tight match. Mario and Peach were down to their last stock.
+                            </p>
+                            <image id="postImage" class="nfPic" src="https://ewedit.files.wordpress.com/2018/06/switch_supersmashbrosultimate_scrn01_e3_bmp_jpgcopy.jpg">
+                        </div>
+                        
+                        <div class="btn-group nfButtons"  role="group" aria-label="Basic podt functions">
+                            <button type="button" class="btn btn-icon" id="like">
+                                <image src="images/icons/thumbs-up.svg" class="postIcons">
+                            </button>
+                            <button type="button" class="btn btn-icon" id="dislike">
+                                <image src="images/icons/thumbs-down.svg" class="postIcons">
+                            </button>
+                            <button type="button" class="btn btn-icon" id="commentButton">
+                                <image src="images/icons/message-square.svg" class="postIcons">
+                            </button>
+                            <button type="button" class="btn btn-icon" id="bookmark">
+                                <image src="images/icons/bookmark2.svg" class="postIcons">
+                            </button>
+                            <button type="button" class="btn btn-icon" id="follow">
+                                <image src="images/icons/bell2.svg" class="postIcons">
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="newsContainer">
+                        <div class="extra">
+                            <label id="nfPoster">posted by/ <a href="Profile">Jose Aquino</a></label>
+                            <h3 id="newTitle">Mario beats Peach</h3>
+                            <p id="newsContent">
+                                In a hot match Mario dethroned Peach from being a top tier. As you can see this match was the most awaited.
+                                Mario defeated Peach in a tight match. Mario and Peach were down to their last stock.
+                            </p>
+                            
+                        </div>
+                        
+                        <div class="btn-group nfButtons"  role="group" aria-label="Basic podt functions">
+                            <button type="button" class="btn btn-icon" id="like">
+                                <image src="images/icons/thumbs-up.svg" class="postIcons">
+                            </button>
+                            <button type="button" class="btn btn-icon" id="dislike">
+                                <image src="images/icons/thumbs-down.svg" class="postIcons">
+                            </button>
+                            <button type="button" class="btn btn-icon" id="commentButton">
+                                <image src="images/icons/message-square.svg" class="postIcons">
+                            </button>
+                            <button type="button" class="btn btn-icon" id="bookmark">
+                                <image src="images/icons/bookmark2.svg" class="postIcons">
+                            </button>
+                            <button type="button" class="btn btn-icon" id="follow">
+                                <image src="images/icons/bell2.svg" class="postIcons">
+                            </button>
+                        </div>
+                    </div> -->
+                    
+                    
+                    
+                </div>
+                
+            </div>
+
+
+
+            <div id="div3" class="newsfeedDiv3">
+                <div id="nav" class="newsfeedNav">
+                    
+                    <div id="navName">
+                        <image src="{{profilePic}}" id="navPic">
+                        <div id="navNameContain">
+                            <label id="navUserName" class="navUN">{{name}}</label><br>
+                            <label id="navNickName" class="navUN">@{{username}}</label>
+                        </div>
+                    </div> 
+                    <ul class="vertical-nav-menu navMenu3"> 
+                          <li>
+                            <a href="/NewsFeed">
+                                Newsfeed
+                            </a>
+                            <a href="/SavedFollowed" >
+                                Saved+Followed 
+                            </a>
+                              <a href="/EditProfile" >
+                                Edit Profile
+                            </a>
+                          </li>
+                     </ul>
+                    
+                    <h4 class="announce-nav">Announcement/s</h4>
+                    <div id="navAnn3">
+                        
+                          <ul class="list-group">
+{{#each announcement}}
+                             <li class="list-group-item list-ann">
+                                <div id="announceposts3">      
+                                     <h6 id="announcementTitle">{{this.title}}</h6>
+                                     {{this.text}}<br>
+                                </div>
+                            </li>
+
+{{/each}}
+<!--                              <li class="list-group-item list-ann">
+                                <div id="announceposts3">      
+                                     <h6 id="announcementTitle">Community Guidelines</h6>
+                                     Good day SSBU Community! We have received an influx of reports of some users displaying bad conduct. 
+                                     We'd like to remind you about our community guidelines! Please take note and be kind. <br>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-ann">
+                                <div id="announceposts3">      
+                                    <h6 id="announcementTitle">Online Subscription</h6>
+                                    Good day SSBU Community! We'd like to remind you that online subscription is required for online battles!<br>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-ann">
+                                <div id="announceposts3">      
+                                    <h6 id="announcementTitle">Edit Profile</h6>
+                                    Good day SSBU Community! You may edit in your profile page your favorite SSBU Character! Edit now and share with everyone!<br>
+                                </div>
+                            </li> -->
+
+                          </ul>
+                    </div>      
+                 </div>
+            
+        </div>
+        
+        
+        
+        <!--Bootstrap-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+
+
+

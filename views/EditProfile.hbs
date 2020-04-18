@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/mainCSS.css">            
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="js/edit.js"></script>
+        <script src="js/navjs.js"></script>
+        
+    </head>
+    <body>
+         <nav class="navbar navbar-light">
+            
+            <image src="images/ssbulogo.png" class="navbar-brand" alt="brand logo">
+            
+            <form class="form-inline" method="post">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <!-- <img src="images/icons/search.svg" id="searchIcon" type="submit"> -->
+                <input type="image" src="/images/icons/search.svg" alt="Submit" >
+            </form>
+
+            <div class="btn-group" role="group" aria-label="Basic example">          
+                <button type="button" class="btn  btn-outline-dark" onclick="location.href='/profile/{{username}}';">
+                    <img src="{{imgsrc}}" id="displayPic">
+                    {{name}}
+                </button>
+                <button type="button" class="btn btn-ss btn-outline-dark" id="btn-Home">Home</button>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item " href="/Notification">
+                        <img src="/images/icons/bell2.svg" id="notifIcon" class="dropIcon"> 
+                        Notifications
+                    </a>
+                    <a class="dropdown-item" href="/EditProfile">
+                        <img src="/images/icons/edit-32.svg" id="editIcon" class="dropIcon"> 
+                        Edit Profile
+                    </a>
+                    <a class="dropdown-item" href="/SavedFollowed">
+                        <img src="/images/icons/bookmark2.svg" id="savedIcon" class="dropIcon"> 
+                        Saved and Followed
+                    </a>
+                    <a class="dropdown-item" href="/getLogout">
+                        <img src="/images/icons/power.svg" id="savedIcon" class="dropIcon"> 
+                        Log-out
+                    </a>
+                </div>
+            </div>     
+        </nav>
+        
+        <div id="container">
+            <div id="div1"></div>
+            <div id="div2">
+                <h1 id="pageTitle">Edit Profile</h1>
+                <div id="editContainer">
+                    <form id="editForm" enctype="multipart/form-data" method="post">
+                        <div class="editBox"> 
+                        <image src="{{imgsrc}}" alt="profileImg" id="editImg">
+                        <label for="file-upload" class="custom-file-upload editUpload">upload image</label>
+                        <input id="file-upload" type="file" name="profilePic"/>
+                        <label id="fileName"> </label>
+                        </div>
+                        <div class="editBox">
+                            <label class="editLabel">Name: </label>
+                            <input type="text" id="name" class="editable edit-text" name="name" value="{{editname}}">
+                        </div>           
+
+                        <div class="editBox">
+                            <label class="editLabel">UserName: </label>
+                            <input type="text" id="username" class="editable edit-text" name="username" value="{{editusername}}">
+                        </div>
+
+                        <div class="editBox">
+                            <label class="editLabel">Nintendo id: </label>
+                            <input type="text" id="nintendoID" class="editable edit-text" name="nintendoID" value="{{editnintendoid}}">
+                        </div>
+
+                        <div class="editBox">
+                            <label class="editLabel">Main(s): </label>
+                            <input type="text" id="mainChar" class="editable edit-text" name="main" value="{{editmains}}">
+                        </div>
+                        <div class="editBox">
+                            <label class="editLabel">Secondary: </label>
+                            <input type="text" id="seconChar" class="editable edit-text" name="secondary"  value="{{editsecondary}}">
+                        </div>
+                        <button type="submit" form="editForm" class="btn btn-edit btn-success">Submit Changes</button>
+                        <label id="editUpdate"> </label>
+                    </form>
+                </div>
+                
+               
+            </div>
+           <div id="div3" class="newsfeedDiv3">
+                <div id="nav" class="newsfeedNav">
+                    
+                    <div id="navName">
+                         <image src="{{imgsrc}}" id="navPic">
+                        <div id="navNameContain">
+                            <label id="navUserName" class="navUN">{{name}}</label><br>
+                            <label id="navNickName" class="navUN">@{{username}}</label>
+                        </div>
+                    </div> 
+                    <ul class="vertical-nav-menu navMenu3"> 
+                          <li>
+                            <a href="/NewsFeed">
+                                Newsfeed
+                            </a>
+                            <a href="/SavedFollowed">
+                                Saved+Followed 
+                            </a>
+                          </li>
+                     </ul>
+                    
+                    <h4 class="announce-nav">Announcement/s</h4>
+                    <div id="navAnn3">
+                        
+                          <ul class="list-group list-ann">
+                        {{#each announcement}}
+                             <li class="list-group-item list-ann">
+                                <div id="announceposts3">      
+                                     <h6 id="announcementTitle">{{this.title}}</h6>
+                                     {{this.text}}<br>
+                                </div>
+                            </li>
+
+                            {{/each}}
+
+
+                          </ul>
+                    </div>
+                 </div>
+            </div> 
+            
+        </div>
+        
+        
+        
+        
+        <!--Bootstrap-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

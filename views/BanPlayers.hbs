@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/mainCSS.css">     
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="js/admin.js"></script>
+        <script src="js/navjs.js"></script>
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-light" >
+            
+            <image src="images/ssbulogo.png" class="navbar-brand" alt="brand logo">
+            
+            <form class="form-inline" method="post">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <img src="images/icons/search.svg" id="searchIcon" type="submit">
+            </form>
+
+            <div class="btn-group" role="group" aria-label="Basic example">          
+                <button type="button" class="btn  btn-outline-dark" disabled>
+                    ADMIN
+                </button>
+                <button type="button" class="btn btn-ss btn-outline-dark" disabled>Home</button>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/getLogout">
+                        <img src="images/icons/power.svg" id="savedIcon" class="dropIcon"> 
+                        Log-out
+                    </a>
+                </div>
+            </div>     
+        </nav>
+        
+        <div id="container">
+            <div id="div1">
+                
+            </div>
+            <div id="div2" class="divAdmin">
+                 <div id="nav">
+                     <ul class="vertical-nav-menu">
+                          <li class="app-sidebar__heading">Dashboard</li>
+                          <li>
+                            <a href="AdminPage" >
+                            Forum Overview
+                            </a>
+                          </li>
+
+                          <li>Actions</li>
+                          <li>
+                            <a href="PostAnnouncement" >
+                                Post Announcements
+                            </a>
+                            <a href="BanPlayers" class="mm-active">
+                                Ban Players
+                            </a>
+                          </li>
+                     </ul>
+                 </div>
+                
+                <div id="divAnn">
+                    <h2>Reports</h2>
+
+                    <ul class="list-group list-group-flush" id="reportedList">
+                       {{#each banned}}
+                        <li class="list-group-item" id="announceList">
+                            <div id="announceposts">      
+                                {{this.reporter}} reported user {{this.post.postbyName}}<br>
+                                <button type="button" class="btn banBtn" onclick="location.href='/post/{{post._id}}';">View Post</button>
+                                <button type="button" class="btn banBtn" onclick="location.href='/Ban/{{post.postbyName}}';">Ban User</button>
+                                <button type="button" class="btn banBtn" onclick="location.href='/Dismiss/{{post._id}}';">Dismiss</button>
+                             </div>
+                        </li>
+                        {{/each}}                      
+                    </ul>
+                </div>
+                
+                
+            </div>
+            <div id="div3"></div>
+        
+        
+        
+        <!--Bootstrap-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
+        
+        
+     </body>
+</html>
