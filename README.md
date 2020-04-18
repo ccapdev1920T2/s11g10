@@ -1,6 +1,7 @@
 # Super Smash Bros Forum - GROUP 10
 The Super Smash Bros Forum is a community where players of Super Smash Bro Ultimate can share their thoughts, idea, expriences and queries through posting images.
 
+**Start up**
 To run the server, first run the js file app_data.js using the command
 
             node add_data.js
