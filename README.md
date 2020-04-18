@@ -1,5 +1,5 @@
 # Super Smash Bros Forum - GROUP 10
-The Super Smash Bros Forum is a community where players of Super Smash Bro Ultimate can share their thoughts, idea, expriences and queries through posting images.
+The Super Smash Bros Ultimate has garnered massive attention from the Nintendo fans since the game’s release date in December of 2018. With the growing population of Nintendo Switch users, the SSBU (Super Smash Bros Ultimate) fanbase has increased indefinitely. This web application is created for the SSBU gaming community which allows users to interact with one another and share their personal techniques, ideas, and tips to other gamers. 
 
 ## Start up
 To run the server, open up the command prompt and navigate through the folder where the files are contained. To create the node modules, use the command 
@@ -17,12 +17,12 @@ Next, run the js file app.js to start the servers using the command
 ## Web App - USER
 Once the server is runnIng, it will be available at localhost:3000. This will then bring you to the login page which allows you to login or register as a new user
 To Login, enter any of the credentials below:
-
-            username: y2aquino                              username: yenwich
-            password: a                                     password: a
-            
-            username: yoki                                  username: jhosemighuel
-            password: a                                     password: a
+| username | password |
+| --- | --- |
+| y2aquino | a |
+| yenwich | a |
+| yoki | a |
+| jhosemighuel | a |
 
 Once logged in, it will bring you to your profile where you can see all you posts. You will also see a header with buttons that allow you to search for posts, go back to your profile, go to the newsfeed, see your notifications, see your Saved and Followed posts, Edit profile and Log out. From this page, you can now explore the web app and interact with other users.
 ### Create Post
