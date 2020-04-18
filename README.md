@@ -1,8 +1,12 @@
 # Super Smash Bros Forum - GROUP 10
 The Super Smash Bros Forum is a community where players of Super Smash Bro Ultimate can share their thoughts, idea, expriences and queries through posting images.
 
-**Start up**
-To run the server, first run the js file app_data.js using the command
+## Start up
+To run the server, open up the command prompt and navigate through the folder where the files are contained. To create the node modules, use the command 
+
+            npm install --save
+
+js file app_data.js using the command
 
             node add_data.js
 This will create the database and populate it with a few users, posts and announcements
