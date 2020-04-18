@@ -34,3 +34,7 @@ To login as admin, enter the following credentials:
             
 This will log you in to the admin account. An admin account keeps track of the posts, users, reports, and announcements. As an admin, you can create and delete posts, view reports, and ban users.
 
+## Authors
+ANYAYAHAN, Loren Rae
+AQUINO, Jose III
+DE ASIS, Jhose Mhiguel
