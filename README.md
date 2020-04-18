@@ -15,7 +15,7 @@ Next, run the js file app.js to start the servers using the command
 
             node app.js
 ## Web App - USER
-Once the server is runnong, it will be available at localhost:3000. This will then bring you to the login page which allows you to login or register as a new user
+Once the server is runnIng, it will be available at localhost:3000. This will then bring you to the login page which allows you to login or register as a new user
 To Login, enter any of the credentials below:
 
             username: y2aquino                              username: yenwich
@@ -25,6 +25,11 @@ To Login, enter any of the credentials below:
             password: a                                     password: a
 
 Once logged in, it will bring you to your profile where you can see all you posts. You will also see a header with buttons that allow you to search for posts, go back to your profile, go to the newsfeed, see your notifications, see your Saved and Followed posts, Edit profile and Log out. From this page, you can now explore the web app and interact with other users.
+### Create Post
+For a user to create a post, you must provide a title and the text. Adding an image is optional and will only support png and jpeg files. A user is also allowed to edit a post and change the image as well. 
+
+### Like, Dislike, Save, Follow and Report
+Users are capable of commenting, liking and disliking posts of all users. When a user does any of these, a notification is sent to the owner of the post. They are also allowed to save and follow posts. This will show up in the Saved and Followed page of the user.
 
 ## Web App - ADMIN
 To login as admin, enter the following credentials:
