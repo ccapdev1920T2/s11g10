@@ -89,8 +89,6 @@ const database = {
         });
     },
 
-    // deletes multiple documents in the collection `collection`
-    // based on the object `filter`
     deleteMany: function(collection, filter) {
         client.connect(url, options, function (err, db) {
             if(err) throw err;
@@ -103,7 +101,6 @@ const database = {
         });
     },
 
-    // drops the collection `collection`
     dropCollection: function(collection) {
         client.connect(url, options, function (err, db) {
             if(err) throw err;
@@ -116,9 +113,6 @@ const database = {
         });
     },
 
-    // updates the value defined in the object `update`
-    // on a single document in the collection `collection`
-    // based on the object `filter`
     updateOne: function(collection, filter, update) {
         client.connect(url, options, function (err, db) {
             if(err) throw err;
@@ -131,9 +125,6 @@ const database = {
         });
     },
 
-    // updates the value defined in the object `update`
-    // on multiple documents in the collection `collection`
-    // based on the object `filter`
     updateMany: function(collection, filter, update) {
         client.connect(url, options, function (err, db) {
             if(err) throw err;
@@ -161,7 +152,4 @@ const database = {
     },
 
 }
-
-// exports the object `database` (defined above)
-// when another script exports from this file
 module.exports = database;
