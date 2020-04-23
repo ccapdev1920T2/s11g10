@@ -14,7 +14,7 @@ router.use(express.static(__dirname + '/public'));
 const multerConf = {
   storage : multer.diskStorage({
       destination : function(req, file, next){
-      next(null,'/public/images')
+      next(null,'public/images')
       console.log("disk storage done");
     },
       filename : function(req, file, next){
