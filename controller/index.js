@@ -516,7 +516,7 @@ const indexFunctions = {
       user = false;
       db.findMany("Posts", {}, {}, {}, function(res2){
           db.findMany("Announcements", {}, {}, {}, function(res3){
-            res.render("Newsfeed", {
+            res.render("NewsFeed", {
             title: 'Welcome!',
             imgsrc : "/images/nesshead.png",
             name : "ADMIN",
@@ -792,7 +792,7 @@ const indexFunctions = {
           db.findMany("Comments", commentquery, {}, {}, function(result2){
             db.findMany("Announcements", {}, {}, {}, function(result3){
 
-              res.render("Editpost",{
+              res.render("EditPost",{
                 title: 'Edit Post',
                 name : req.session.user.name,
                 profilePic : req.session.user.pic,
