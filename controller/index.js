@@ -497,7 +497,7 @@ const indexFunctions = {
 
         db.findMany("Posts", query2, { postDate : -1, postTime : -1}, {}, function(res2){
           db.findMany("Announcements", query2, {}, {}, function(res3){
-            res.render("Newsfeed", {
+            res.render("NewsFeed", {
             title: 'Welcome!',
             imgsrc : result.pic,
             name : result.name,
