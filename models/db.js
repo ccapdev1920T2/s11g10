@@ -72,7 +72,7 @@ const database = {
                 if(err) throw err;
                 console.log(result);
                 db.close();
-                //return callback(result);
+                return callback(result);
             });
         });
     },
