@@ -442,6 +442,12 @@ iframe {
   -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
+.error{
+  width: 100%;
+  position: relative;
+  background-color: red;
+  border-radius: 20px;
+}
 /*//////////////////////////////////////////////////////////////////
 [ Responsive ]*/
 

@@ -333,7 +333,8 @@ const indexFunctions = {
     var nintendoid = req.body.id;
     var pw = req.body.pass;
     var email = req.body.email;
-      
+    
+    var error = "";
     //console.log(req.body.username);
 
     var query1 = {
@@ -344,34 +345,108 @@ const indexFunctions = {
       email : email
     };
 
+    var password = false;
+    var pwmatch = "";
+    if(pw != req.body.pass1){
+      password = true;
+      pwmatch = "Password does not match";
+    }
 
-    //check if already exists
-    db.findOne("Users", query1, function (result){
-        if(result == null){
-          db.findOne("Users", query2, function(result2){
-            if(result2 == null){
-                      db.insertOne("Users", {
-                      name : name,
-                      uname : username,
-                      nintendoid : nintendoid,
-                      password : pw,
-                      email : email,
-                      pic : "/images/default.png",
-                      main : "",
-                      secondary : "",
-                      status : true
-                        }); 
-                      res.redirect("/verify");
-            }
-            else
-              res.redirect("/Register");
-          });
-        }
-        else{
-              res.redirect("/Register");
-        }
-    });
-
+    if(name){
+      if(username){
+        if(pw){
+          if(req.body.pass1){
+            if(email){
+              //check if already exists
+              db.findOne("Users", query1, function (result){
+                  if(result == null){
+                    db.findOne("Users", query2, function(result2){
+                      if(result2 == null){
+                                db.insertOne("Users", {
+                                name : name,
+                                uname : username,
+                                nintendoid : nintendoid,
+                                password : pw,
+                                email : email,
+                                pic : "/images/default.png",
+                                main : "",
+                                secondary : "",
+                                status : true
+                                  }); 
+                                res.redirect("/verify");
+                      }
+                      else
+                        error = error + "\nEmail is taken";
+                        //res.redirect("/Register");
+                        res.render("Register", {
+                          password : password,
+                          username: false,
+                          email : true,
+                          content : req.body,
+                          error : error,
+                          pwmatch : pwmatch
+                        });
+                    });
+                  }
+                  else{
+                      db.findOne("Users", query2, function(email){
+                        if(email){
+                          error = "Username and email are taken";
+                          res.render("Register", {
+                          password : password,
+                          username: true,
+                          email : true,
+                          content : req.body,
+                          error : error,
+                          pwmatch : pwmatch
+                        });
+                        }
+                        else{
+                          error = "Username is taken";
+                          res.render("Register", {
+                          password : password,
+                          username: true,
+                          email : false,
+                          content : req.body,
+                          error : error,
+                          pwmatch : pwmatch
+                        });
+                        }
+                      });
+                  }
+              });
+            }else{
+        res.render("Register",{
+          error : "Please fill up missing parts",
+          content : req.body
+        })
+      }
+        }else{
+        res.render("Register",{
+          error : "Please fill up missing parts",
+          content : req.body
+        })
+      }
+      }else{
+        res.render("Register",{
+          error : "Please fill up missing parts",
+          content : req.body
+        })
+      }
+    }
+    else{
+        res.render("Register",{
+          error : "Please fill up missing parts",
+          content : req.body
+        })
+      }
+    }
+      else{
+        res.render("Register",{
+          error : "Please fill up missing parts",
+          content : req.body
+        })
+      }
 
      },
 
@@ -379,7 +454,8 @@ const indexFunctions = {
         
         var username = req.body.username;
         var pw = req.body.pass;
-
+        var error = "";
+        
         console.log(username);
         console.log(pw);
         if(username == "admin" && pw == "admin"){
@@ -394,7 +470,10 @@ const indexFunctions = {
 
         db.findOne("Users", query, function (result){
           if(result == null){
-             res.redirect("/Login");
+             error = "Username does not exist.";
+             res.render("LogIn", {
+                          error : error
+                        });
           }
           else{
             if(result.status){
@@ -404,11 +483,17 @@ const indexFunctions = {
                   res.redirect("/profile/" + username);
                 }
                 else{
-                  res.redirect("/Login");
+                  error = "Username and password do not match.";
+                  res.render("LogIn", {
+                          error : error
+                        });
                 }
             }
             else{
-              res.redirect("/Login");
+              error = "You have been banned from the Forum.";
+              res.render("LogIn", {
+                       error : error
+                        });
             }
           };
         });

@@ -218,7 +218,7 @@ and open the template in the editor.
                     <div class="media" id="postedComment">
 {{#each comment}}               
                         <div class="comments">
-                            <a href="Profile">{{this.commenter}}</a>
+                            <a href="/Profile/{{this.commenter}}">{{this.commenter}}</a>
                             <label > commented {{this.commentDate}} {{this.commentTime}} </label>
                             <p class="commentText">{{this.comment}}</p>
 

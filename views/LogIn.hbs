@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/mainCSS.css">
 </head>
 <body>
 	<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
@@ -23,7 +24,9 @@
 				<span class="login100-form-title p-b-37">
 					Sign In!
 				</span>
-
+				<div id="error">
+					{{error}}
+				</div>
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username">
 					<input class="input100" type="text" name="username" id="username" placeholder="username">
 					<span class="focus-input100"></span>

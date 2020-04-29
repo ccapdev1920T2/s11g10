@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/mainCSS.css">
         
 </head>
 <body>
@@ -24,39 +25,65 @@
 				<span class="login100-form-title p-b-37">
 					Register and be part of the SSBU community!<br>
 				</span>
-
+				<div id="error">
+					{{pwmatch}}
+					{{error}}
+				</div>
 				 <form class="login100-form validate-form" id="registerForm" method="post">
 
 				<div class="wrap-input100 validate-input m-b-20">
-					<input class="input100" type="text" name="name" id="name" placeholder="name">
+					<input class="input100" type="text" name="name" id="name" placeholder="name" value="{{content.name}}">
 					<span class="focus-input100"></span>
 				</div>
 
+{{#if username}}
+				<div class="error validate-input m-b-20" data-validate="Enter username">
+					<input class="input100" type="text" name="username" id="username" placeholder="username" value="">
+					<span class="focus-input100"></span>
+				</div>
+{{else}}
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username">
-					<input class="input100" type="text" name="username" id="username" placeholder="username">
+					<input class="input100" type="text" name="username" id="username" placeholder="username" value="{{content.username}}">
 					<span class="focus-input100"></span>
 				</div>
-
+{{/if}}
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter Nintendo Switch ID (Optional)">
-					<input class="input100" type="text" name="id" id="id" placeholder="nintendo switch id (optional)">
+					<input class="input100" type="text" name="id" id="id" placeholder="nintendo switch id (optional)" value="{{content.id}}">
+					<span class="focus-input100"></span>
+				</div>
+{{#if password}}
+				<div class="error validate-input m-b-25" data-validate = "Enter password">
+					<input class="input100" type="password" name="pass" id="pass" placeholder="password" value="">
 					<span class="focus-input100"></span>
 				</div>
 
+				<div class="error validate-input m-b-25" data-validate = "Confirm password">
+					<input class="input100" type="password" name="pass1" id="pass1" placeholder="confirm password" value="">
+					<span class="focus-input100"></span>
+				</div>
+{{else}}
 				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
-					<input class="input100" type="password" name="pass" id="pass" placeholder="password">
+					<input class="input100" type="password" name="pass" id="pass" placeholder="password" value="{{content.pass}}">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-25" data-validate = "Confirm password">
-					<input class="input100" type="password" name="pass1" id="pass1" placeholder="confirm password">
+					<input class="input100" type="password" name="pass1" id="pass1" placeholder="confirm password" value="{{content.pass1}}">
 					<span class="focus-input100"></span>
 				</div>
+{{/if}}
 
+{{#if email}}
+				<div class="error validate-input m-b-20" data-validate="Enter email">
+					<input class="input100" type="email" name="email" placeholder="email" value="">
+					<span class="focus-input100"></span>
+				</div>
+{{else}}
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter email">
-					<input class="input100" type="email" name="email"  id="email" placeholder="email">
+					<input class="input100" type="email" name="email"  id="email" placeholder="email" value="{{content.email}}">
 					<span class="focus-input100"></span>
 				</div>
-
+{{/if}}
 
 				<div class="container-login100-form-btn">
 <!-- 					<button class="login100-form-btn" id="registerBtn">
