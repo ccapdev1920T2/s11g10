@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 const client = mongodb.MongoClient;
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-const dbName = 'database';
+const dbName = 'ssbucluster';
 const options = { useUnifiedTopology: true };
 const database = {
 
