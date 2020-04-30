@@ -33,6 +33,9 @@ Once logged in, it will bring you to your profile where you can see all you post
 ### Create Post
 For a user to create a post, you must provide a title and the text. Adding an image is optional and will only support png and jpeg files. A user is also allowed to edit a post and change the image as well. 
 
+### Edit Profile
+You may edit your profile picture, main and secondary characters in the profile page. To navigate to your profile pagr from the Newsfeed, click your Name on the upper right of the header bar.
+
 ### Like, Dislike, Save, Follow and Report Post
 Users are capable of commenting, liking and disliking posts of all users. When a user does any of these, a notification is sent to the owner of the post. They are also allowed to save and follow posts. This will show up in the Saved and Followed page of the user.
 
