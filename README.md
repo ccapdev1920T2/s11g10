@@ -2,6 +2,9 @@
 The Super Smash Bros Ultimate has garnered massive attention from the Nintendo fans since the game’s release date in December of 2018. With the growing population of Nintendo Switch users, the SSBU (Super Smash Bros Ultimate) fanbase has increased indefinitely. This web application is created for the SSBU gaming community which allows users to interact with one another and share their personal techniques, ideas, and tips to other gamers. 
 
 ## Prerequisites
+-[Node JS](https://nodejs.org/en/download/)
+-[MongoDB](https://www.mongodb.com/download-center/community)
+-[MongoDB Compass](https://www.mongodb.com/download-center/compass)
 
 ## Start up
 To run the server, open up the command prompt and navigate through the folder where the files are contained. To create the node modules, use the command 
