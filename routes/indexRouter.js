@@ -131,4 +131,9 @@ router.get("/dismiss/:reportid", controller.getDeleteReport);
 
 router.get("/getLogout", controller.getLogout);
 
+router.get("/ajax",controller.getAjax);
+
+
+
+
 module.exports = router;

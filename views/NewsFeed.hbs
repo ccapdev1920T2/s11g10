@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/mainCSS.css">            
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="js/navjs.js"></script>
@@ -90,9 +91,9 @@
                 <div id="divCon2">
 {{#each post}}
 <!-- <a href="/post/{{_id}}">a</a> -->
-                    <div id="newsContainer" onclick="location.href='/post/{{_id}}';">
+                    <div id="newsContainer">
                         
-                        <div class="extra">
+                        <div class="extra" onclick="location.href='/post/{{_id}}';">
                             <label id="nfPoster">posted by <img src="{{postusericon}}" id="postusericon">  <a href="/Profile/{{postbyName}}" class="profLink">@{{postbyName}}</a> {{postDate}} {{postTime}}</label>
                             <h3 id="newTitle">{{postTitle}} </h3>
                             <p id="newsContent">
@@ -103,7 +104,7 @@
                             {{/each}}
                         </div>
                         
-                            <div class="btn-group nfButtons" role="group" aria-label="Basic podt functions">
+                            <div class="btn-group nfButtons" role="group" aria-label="Basic podt functions" id="smallbutton">
                                 <button type="button" class="btn btn-icon" id="like">
                                     <image src="images/icons/thumbs-up.svg" class="postIcons">
                                 </button>

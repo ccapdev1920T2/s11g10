@@ -6,6 +6,9 @@ const  bodyParser = require('body-parser');
 var ObjectId = require("mongodb").ObjectId;
 var sess = "y2aquino";
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 app.use(bodyParser());
 
 
@@ -362,20 +365,28 @@ const indexFunctions = {
                   if(result == null){
                     db.findOne("Users", query2, function(result2){
                       if(result2 == null){
+                        bcrypt.hash(pw, saltRounds, function(err, hash){
                                 db.insertOne("Users", {
                                 name : name,
                                 uname : username,
                                 nintendoid : nintendoid,
-                                password : pw,
+                                password : hash,
                                 email : email,
                                 pic : "/images/default.png",
                                 main : "",
                                 secondary : "",
                                 status : true
+                                  }, function(flag){
+                                    if(flag){
+                                      res.redirect("/verify");
+                                    }
+                                    else
+                                    res.redirect("/verify");
                                   }); 
-                                res.redirect("/verify");
+                                
+                            });
                       }
-                      else
+                      else{
                         error = error + "\nEmail is taken";
                         //res.redirect("/Register");
                         res.render("Register", {
@@ -386,6 +397,7 @@ const indexFunctions = {
                           error : error,
                           pwmatch : pwmatch
                         });
+                      }
                     });
                   }
                   else{
@@ -477,17 +489,36 @@ const indexFunctions = {
           }
           else{
             if(result.status){
-                if(result.password == pw){
-                  req.session.uname = username;
-                  req.session.user = result;
-                  res.redirect("/profile/" + username);
-                }
-                else{
-                  error = "Username and password do not match.";
+
+                bcrypt.compare(pw, result.password, function(err, equal){
+                  if(equal){
+                    req.session.uname = username;
+                    req.session.user = result;
+                    res.redirect("/profile/" + username);
+                  }
+                  else{
+                    error = "Username and password do not match.";
                   res.render("LogIn", {
                           error : error
                         });
-                }
+                  }
+
+
+                })
+
+                // if(result.password == pw){
+                //   req.session.uname = username;
+                //   req.session.user = result;
+                //   res.redirect("/profile/" + username);
+                // }
+                // else{
+                //   error = "Username and password do not match.";
+                //   res.render("LogIn", {
+                //           error : error
+                //         });
+                // }
+
+
             }
             else{
               error = "You have been banned from the Forum.";
@@ -1158,6 +1189,14 @@ const indexFunctions = {
     db.deleteOne("Reports", { "post._id" : reportid});
 
     res.redirect("/BanPlayers");
+  },
+
+  getAjax : function(req,res){
+    console.log("AJAX");
+    db.insertOne("Likes", {
+      note: "IT WORKED"
+    });
+    res.send("ok");
   }
 
 }
