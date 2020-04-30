@@ -366,7 +366,7 @@ const indexFunctions = {
                     db.findOne("Users", query2, function(result2){
                       if(result2 == null){
                         bcrypt.hash(pw, saltRounds, function(err, hash){
-                                db.insertOne("Users", {
+                                db.insertAnotherOne("Users", {
                                 name : name,
                                 uname : username,
                                 nintendoid : nintendoid,

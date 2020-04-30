@@ -37,7 +37,7 @@ const database = {
             });
         });
     },
-    insertOne: function(collection, doc, callback) {
+    insertAnotherOne: function(collection, doc, callback) {
         client.connect(url, options, function (err, db) {
 
             if(err) throw err;
