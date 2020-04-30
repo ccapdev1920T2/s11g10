@@ -38,11 +38,17 @@ Users are capable of commenting, liking and disliking posts of all users. When a
 
 ## Web App - ADMIN
 To login as admin, enter the following credentials:
+| username | password |
+| --- | --- |
+| admin | admin |
 
-            username: admin
-            password: admin
-            
-This will log you in to the admin account. An admin account keeps track of the posts, users, reports, and announcements. As an admin, you can create and delete posts, view reports, and ban users. There is a set of guidelines that an admin must follow when banning users. Terms and conditions being checked to determine whether the user is a candidate for being banned.
+This will log you in to the admin account. An admin account keeps track of the posts, users, reports, and announcements. 
+
+### Post Announcements
+As an admin, you can post announcements that can be seen on the newsfeed of the registered members. 
+
+### Ban Users
+They can also delete posts, view reports, and ban users. There is a set of guidelines that an admin must follow when banning users. Terms and conditions being checked to determine whether the user is a candidate for being banned.
 
 ## Authors
 - ANYAYAHAN, Loren Rae
