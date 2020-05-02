@@ -9,7 +9,7 @@
         justify-content: flex-start;
         background-color: #ff4e4e ;
         width : 100%;
-        height: 7vh ; 
+        height: 80px ; 
         position: fixed; 
         top: 0px;
         z-index: 2 ;
@@ -19,44 +19,53 @@
     .navbar > .form-inline
     {
         position: relative;
-        width: 260px; 
+        width: 300px; 
         margin-right: 35% ; 
         margin-left: 1% ; 
     }
 
-
-
-    #seachBar {
+    #searchform
+    {
+        position : absolute;
+        margin-left: 20%;
+         width: 300px;
+         height: auto;
+    }
+    #searchBar {
         position: relative;
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 40px;
 
     }
     #searchIcon
     {
-        height: 9%;
-        width: 9% ; 
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height: 30px;
+        width: 30px; 
+        
         cursor:pointer;
     }
 
     .navbar > .navbar-brand
     {
         position: relative;
-        width: 150px ; 
-        height: 75px; ;
+        width: auto ; 
+        height: 100px; ;
         max-height: 100%;
-        max-width: 9%;
+
+        /*max-width: 9%;*/
         cursor:pointer;
     }
 
     .navbar > .btn-group
     {
-        width: 20% ; 
+        position : absolute;
+        width: 100% ; 
         height: 100% ; 
         justify-content: flex-start ; 
         border-style: none ; 
-        margin-top: -0.3% ;   
+        margin-top: -0.3% ;  
+        margin-left: 60%; 
+         margin-right: 0px; 
     }
 
     .btn-group > .btn
@@ -69,8 +78,8 @@
 
     .btn-group > .btn-ss
     {
-        width: 40% ; 
-        height: 100% ; 
+        width: auto ; 
+        margin-top: 0px;
         border-style: none ; 
         font-weight: 400 ;
          font-family: 'Noto Sans';
@@ -86,14 +95,21 @@
         border-style: solid ; 
         border-width: thin ; 
         border-radius: 50% ; 
-        width: 30% ; 
-        height: 130% ;
-        margin-top: -3% ; 
+        width: auto ; 
+        height: 90%;
+        max-height: 80px;
+        margin-top: 10px ; 
         margin-left: -8% ;  
     }
-    
+    .dropdown{
+        margin-top: 20px;
+        margin-right: 80%;
+    }
     .dropdownMenuButton
     {
+        position: relative;
+        margin-left: : 0px;
+        margin-top: 40px;
         outline-color: black ;
     }
     .dropdown-item:hover
@@ -117,6 +133,7 @@
 /* MAIN CONTAINER*/
     #container
     {
+        position: absolute;
         width: 100% ; 
         min-height: 93vh;  
         height: auto;  
@@ -125,7 +142,7 @@
         background-color:#FFFAFA ;
         padding: 0px;
         padding-top: 0.2% ;
-        margin-top: 7vh ;
+        margin-top: 80px ;
     }
 
 
@@ -1006,7 +1023,7 @@
 
     .newsfeedDiv3 > .newsfeedNav
     {
-        margin-top: 20px ;
+        margin-top: 50px ;
         z-index: 1 ;    
         position: fixed;
         top: 7vh ;
@@ -1123,4 +1140,7 @@
         height: 30px;
         text-align: center;
         color : red;
+    }
+    #prof{
+        width : 600px;
     }

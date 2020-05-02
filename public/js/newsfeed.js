@@ -1,3 +1,4 @@
+
 $(document).ready(function()
 {
 	
@@ -52,65 +53,23 @@ $(document).ready(function()
     }); 
 
 
-   $('#smallbutton').on('click', '#like', function()
+   $('.smallbutton').on('click', '.like', function()
     {
-      $(this).get("/ajax", { liker : liker, postid : postid }, function(res){
-        alert("reached response and like is:");  
-      });
+
+      var postid = $(this).val();
+      var liker = $("#user").val();
 
       alert("gumana");
 
-      var postid = $("#likepostid").val();
-      var liker = $("#liker").val();
+      var xhttp = new XMLHttpRequest();
+      xhttp.open('GET', "/ajax", true);
 
 
 
-      $(this).get("/ajax", { liker : liker, postid : postid }, function(res){
-        alert("reached response and like is:");  
+      $.get("/ajax",{postid : postid, liker : liker}, function(yon){
+        alert("woops");
+        alert(yon);  
       });
-
-      alert("gumana2");
-      
-
-      $(this).ajax({
-        url : "/ajax",
-        type : "GET",
-        data : {
-        postid : postid,
-        liker  : liker
-        },
-        success : function(data){
-          alert("gumana ang ppangalawang ajax");
-        }
-      });
-
-      alert("gumana3");
-
-      // $.load("try", {}, function(result){
-      //   alert("HAYUP");
-      //   console.log("tangina ka");
-      // })
-
-      // $.get("/try", function(res){
-
-      //   alert("naglike");
-      //   if(res.success == "success"){
-      //     alert("ito na");
-      //   }
-      // });
-
-
-
-      // if($(this).attr('data-click-state') == 0)   
-      // {
-      //     $(this).attr('data-click-state', 1);
-      //     $(this).css('background-color', '#00AF33') ;
-      //   }
-      //   else
-      //   {
-      //     $(this).attr('data-click-state', 0);
-      //     $(this).css('background-color','transparent') ;
-      //   }
 
     });
 });

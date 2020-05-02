@@ -82,7 +82,7 @@ router.post('/Newsfeed', multer(multerConf).single('postPic'), controller.postNe
 
 
 
-//router.get('/search', controller.getSearch);
+router.get('/search', controller.getSearch);
 router.get('/search/:search', controller.getSearch);
 router.post('/search/:search', controller.postSearch);
 

@@ -6,6 +6,8 @@ const  bodyParser = require('body-parser');
 var ObjectId = require("mongodb").ObjectId;
 var sess = "y2aquino";
 
+// const { validationResult } = require('express-validator');
+
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -382,8 +384,7 @@ const indexFunctions = {
                                     }
                                     else
                                     res.redirect("/verify");
-                                  }); 
-                                
+                                  });                                 
                             });
                       }
                       else{
@@ -461,6 +462,115 @@ const indexFunctions = {
       }
 
      },
+
+     // postRegister : function(req,res) {
+
+     //  var errors = validationResult(req);
+     //  var name = req.body.name;
+     //  var username = req.body.username;
+     //  var nintendoid = req.body.id;
+     //  var pw = req.body.pass;
+     //  var email = req.body.email;
+      
+     //  var error = "";
+     //  //console.log(req.body.username);
+
+     //  var query1 = {
+     //    uname : username
+     //  };
+
+     //  var query2 = {
+     //    email : email
+     //  };
+
+
+     //  if(!errors.isEmpty()){
+
+     //    errors = errors.errors;
+
+     //    var details = {};
+     //    for(i = 0; i < errors.length; i++)
+     //            details[errors[i].param + 'Error'] = errors[i].msg;
+
+              
+     //    res.render('signup', {
+     //      details : details
+     //      content : req.body
+     //    });
+
+     //  }
+     //  else{
+     //    db.findOne("Users", query1, function (result){
+     //              if(result == null){
+     //                db.findOne("Users", query2, function(result2){
+     //                  if(result2 == null){
+     //                    bcrypt.hash(pw, saltRounds, function(err, hash){
+     //                            db.insertAnotherOne("Users", {
+     //                            name : name,
+     //                            uname : username,
+     //                            nintendoid : nintendoid,
+     //                            password : hash,
+     //                            email : email,
+     //                            pic : "/images/default.png",
+     //                            main : "",
+     //                            secondary : "",
+     //                            status : true
+     //                              }, function(flag){
+     //                                if(flag){
+     //                                  res.redirect("/verify");
+     //                                }
+     //                                else
+     //                                res.redirect("/verify");
+     //                              }); 
+                                
+     //                        });
+     //                  }
+     //                  else{
+     //                    error = error + "\nEmail is taken";
+     //                    //res.redirect("/Register");
+     //                    res.render("Register", {
+     //                      password : password,
+     //                      username: false,
+     //                      email : true,
+     //                      content : req.body,
+     //                      error : error,
+     //                      pwmatch : pwmatch
+     //                    });
+     //                  }
+     //                });
+     //              }
+     //              else{
+     //                  db.findOne("Users", query2, function(email){
+     //                    if(email){
+     //                      error = "Username and email are taken";
+     //                      res.render("Register", {
+     //                      password : password,
+     //                      username: true,
+     //                      email : true,
+     //                      content : req.body,
+     //                      error : error,
+     //                      pwmatch : pwmatch
+     //                    });
+     //                    }
+     //                    else{
+     //                      error = "Username is taken";
+     //                      res.render("Register", {
+     //                      password : password,
+     //                      username: true,
+     //                      email : false,
+     //                      content : req.body,
+     //                      error : error,
+     //                      pwmatch : pwmatch
+     //                    });
+     //                    }
+     //                  });
+     //              }
+     //          });
+
+     //  }
+     // },
+
+
 
      postLogIn : function(req,res){
         
@@ -1192,11 +1302,71 @@ const indexFunctions = {
   },
 
   getAjax : function(req,res){
-    console.log("AJAX");
-    db.insertOne("Likes", {
-      note: "IT WORKED"
+    console.log("AJAX LIKE" + req.query.liker);
+
+    var postid = ObjectId(req.query.postid);
+    var liker = req.query.liker;
+    var query = { postid : postid, liker : liker}
+    var query2 = { postid : postid, disliker : liker}
+    var d = new Date();
+    var date = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
+    if(d.getMinutes() < 10){
+            var time = d.getHours() + ":0" + d.getMinutes();
+          }else{
+            var time = d.getHours() + ":" + d.getMinutes();
+          }
+
+    // db.createCollection("Likes");
+    db.findOne("Dislikes", query2, function(result2){
+      if(result2){
+        console.log("DELETE LIKE");
+        db.deleteOne("Dislikes", query2);
+        db.updateOne("Posts", { "_id" : postid}, {
+          $inc : {
+            nDislikes : -1
+          }
+        });
+      }
+      db.findOne("Likes", query, function(result){
+        if(result){
+          console.log("already liked");
+        }
+        else{
+          console.log("like successful");
+          db.insertOne("Likes", {
+            liker   : liker,
+            postid  : postid,
+            likeDate : date,
+            likeTime : time
+          });
+          db.updateOne("Posts", { "_id" : postid}, {
+          $inc : {
+            nLikes : 1
+          }
+          });
+
+          //create notif 
+          db.findOne("Posts", {"_id" : postid}, function(post){
+
+            console.log(post);
+
+            var postbyName = post.postbyName;
+
+
+            db.insertOne("Notifications", {
+              notifyTo : postbyName,
+              postid : postid,
+              action : "liked",
+              actionby : liker,
+              actionbyIcon : req.session.user.pic,
+              date : date,
+              time : time
+            });
+          });
+        }
+      });
     });
-    res.send("ok");
+
   }
 
 }

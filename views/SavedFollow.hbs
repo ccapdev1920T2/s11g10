@@ -17,46 +17,49 @@ and open the template in the editor.
         <script src="js/navjs.js"></script>
     </head>
     <body>
-          <nav class="navbar navbar-light">
+         <div class="navbar navbar-light">
             
-            <image src="images/ssbulogo.png" class="navbar-brand" alt="brand logo">
+            <image src="/public/images/ssbulogo.png" class="navbar-brand" alt="brand logo">
             
-            <form class="form-inline" method="post">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                <img src="images/icons/search.svg" id="searchIcon" type="submit">
+            <form class="form-inline" method="post" id="searchform">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" id="searchBar">
+                <!-- <img src="/public/images/icons/search.svg" id="searchIcon" type="submit"> -->
+                <input type="image" src="/images/icons/search.svg" alt="Submit" id="searchIcon">
             </form>
 
-            <div class="btn-group" role="group" aria-label="Basic example">          
-                <button type="button" class="btn  btn-outline-dark">
+            <div class="btn-group" role="group" aria-label="Basic example" >          
+                <button type="button" class="btn  btn-outline-dark" onclick="location.href='/profile/{{username}}';" id="prof">
                     <img src="{{profilePic}}" id="displayPic">
                     {{name}}
                 </button>
                 <button type="button" class="btn btn-ss btn-outline-dark" id="btn-Home">Home</button>
-            </div>
-
-            <div class="dropdown">
+                
+                <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item " href="Notification">
-                        <img src="images/icons/bell2.svg" id="notifIcon" class="dropIcon"> 
+                    <a class="dropdown-item " href="/Notification">
+                        <img src="/images/icons/bell2.svg" id="notifIcon" class="dropIcon"> 
                         Notifications
                     </a>
-                    <a class="dropdown-item" href="EditProfile">
-                        <img src="images/icons/edit-32.svg" id="editIcon" class="dropIcon"> 
+                    <a class="dropdown-item" href="/EditProfile">
+                        <img src="/images/icons/edit-32.svg" id="editIcon" class="dropIcon"> 
                         Edit Profile
                     </a>
-                    <a class="dropdown-item" href="SavedFollowed">
-                        <img src="images/icons/bookmark2.svg" id="savedIcon" class="dropIcon"> 
+                    <a class="dropdown-item" href="/SavedFollowed">
+                        <img src="/images/icons/bookmark2.svg" id="savedIcon" class="dropIcon"> 
                         Saved and Followed
                     </a>
-                    <a class="dropdown-item" href="LogIn">
-                        <img src="images/icons/power.svg" id="savedIcon" class="dropIcon"> 
+                    <a class="dropdown-item" href="/getLogout">
+                        <img src="/images/icons/power.svg" id="savedIcon" class="dropIcon"> 
                         Log-out
                     </a>
                 </div>
-            </div>     
-        </nav>
+            </div>  
+            </div>
+
+               
+        </div>
         
         <div id="container">
             <div id="div1"></div>
