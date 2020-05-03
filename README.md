@@ -8,7 +8,7 @@ To set up the local web application, download and install the following modules:
 - [MongoDB](https://www.mongodb.com/download-center/community)
 - [MongoDB Compass](https://www.mongodb.com/download-center/compass)
 
-## Start up
+## Installing
 To run the server, open up the command prompt and navigate through the folder where the files are contained. To create the node modules, use the command 
 
             npm install --save
