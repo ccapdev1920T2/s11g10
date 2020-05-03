@@ -65,7 +65,7 @@ As an admin, you can post announcements that can be seen on the newsfeed of the 
 They can also delete posts, view reports, and ban users. There is a set of guidelines that an admin must follow when banning users. Terms and conditions being checked to determine whether the user is a candidate for being banned.
 
 ## Versioning
-We used Google Drive for versioning. Our google drive may be accessed [here](https://drive.google.com/drive/folders/1u64uhkbHmnUapY5umzwumQuTVwnF4OkX?usp=sharing)
+We used Google Drive for versioning. Our google drive may be accessed [here](https://drive.google.com/drive/folders/1u64uhkbHmnUapY5umzwumQuTVwnF4OkX?usp=sharing).
 
 ## Authors
 - ANYAYAHAN, Loren Rae
