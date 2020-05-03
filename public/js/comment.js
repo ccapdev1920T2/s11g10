@@ -107,9 +107,6 @@ $(document).ready(function()
       var postid = $("#likepostid").val();
       var disliker = $("#liker").val();
 
-
-
-      alert("save");
       $.get("/ajaxSave", {postid : postid, saveto : disliker}, function(result){
         if(result){
           $(".save").css('background-color', '#00AF33');
@@ -126,9 +123,6 @@ $(document).ready(function()
       var postid = $("#likepostid").val();
       var disliker = $("#liker").val();
 
-
-
-      alert("follow");
       $.get("/ajaxFollow", {postid : postid, saveto : disliker}, function(result){
         if(result){
           $(".follow").css('background-color', '#00AF33');
