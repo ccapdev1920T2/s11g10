@@ -1,8 +1,7 @@
 # Super Smash Bros Forum - GROUP 10
 The Super Smash Bros Ultimate has garnered massive attention from the Nintendo fans since the game’s release date in December of 2018. With the growing population of Nintendo Switch users, the SSBU (Super Smash Bros Ultimate) fanbase has increased indefinitely. This web application is created for the SSBU gaming community which allows users to interact with one another and share their personal techniques, ideas, and tips to other gamers. 
 
-
-      [Navigate to Heroku Deployed App](https://ssbu.herokuapp.com/NewsFeed) 
+## [Navigate to Heroku Deployed App](https://ssbu.herokuapp.com/NewsFeed) 
 
 ## Prerequisites
 To set up the local web application, download and install the following modules: 
@@ -36,10 +35,10 @@ To register, fill out the necessary fields in the form and press the "Register" 
 If you chose to Login first, you may enter any of the credentials below:
 | username | password |
 | --- | --- |
-| y2aquino | a |
-| yenwich | a |
-| yoki | a |
-| jhosemighuel | a |
+| y2aquino | passwordy2 |
+| yenwich | passwordyen |
+| thefish | passwordmichael |
+| jhosemhighuel | passwordjhose |
 
 Once logged in, it will bring you to your profile where you can see all you posts. You will also see a header with buttons that allow you to search for posts, go back to your profile, go to the newsfeed, see your notifications, see your Saved and Followed posts, Edit profile and Log out. From this page, you can now explore the web app and interact with other users.
 #### Create Post
