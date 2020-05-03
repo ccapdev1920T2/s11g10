@@ -67,7 +67,6 @@ $(document).ready(function()
 
 
           $.get("/ajaxLike",{postid : postid, liker : liker}, function(result){
-            alert("Liked");
           });
 
 

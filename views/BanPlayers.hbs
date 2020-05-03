@@ -9,6 +9,7 @@ and open the template in the editor.
         <title>{{title}}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <link rel="icon" type="image/png" href="images/icons/mario.png"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/mainCSS.css">     
@@ -18,23 +19,21 @@ and open the template in the editor.
         
     </head>
     <body>
-        <nav class="navbar navbar-light" >
+                <nav class="navbar navbar-light">
             
             <image src="images/ssbulogo.png" class="navbar-brand" alt="brand logo">
             
             <form class="form-inline" method="post">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                <img src="images/icons/search.svg" id="searchIcon" type="submit">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" id="searchBar">
+                <img src="images/icons/search.svg" id="searchIcon" type="submit" id="searchIcon">
             </form>
 
             <div class="btn-group" role="group" aria-label="Basic example">          
-                <button type="button" class="btn  btn-outline-dark" disabled>
+                <button type="button" class="btn  btn-outline-dark" disabled id="prof">
                     ADMIN
                 </button>
-                <button type="button" class="btn btn-ss btn-outline-dark" disabled>Home</button>
-            </div>
-
-            <div class="dropdown">
+                <button type="button" class="btn btn-ss btn-outline-dark" id="home">Home</button>
+                <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -43,7 +42,10 @@ and open the template in the editor.
                         Log-out
                     </a>
                 </div>
-            </div>     
+            </div>  
+            </div>
+
+               
         </nav>
         
         <div id="container">
