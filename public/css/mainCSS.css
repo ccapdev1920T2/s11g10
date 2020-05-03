@@ -1134,6 +1134,16 @@
         background-color : #00AF33;
     }
 
+    #active2
+    {
+        background-color : #00AF33;
+    }
+
+    #active3
+    {
+        background-color : #00AF33;
+    }
+
     #error{
         position: relative;
         width: 100%;
@@ -1143,4 +1153,9 @@
     }
     #prof{
         width : 600px;
+    }
+
+    #likesformat{
+        font-size: 8pt ; 
+        color: #909090 ; 
     }

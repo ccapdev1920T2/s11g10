@@ -131,9 +131,20 @@ router.get("/dismiss/:reportid", controller.getDeleteReport);
 
 router.get("/getLogout", controller.getLogout);
 
-router.get("/ajax",controller.getAjax);
+router.get("/ajaxLike",controller.getAjaxLike); //like
 
+router.get("/ajaxDislike",controller.getAjaxDislike); //dislike
 
+router.get("/checkDislike",controller.getCheckDislike); //dislike
 
+router.get("/checkLike",controller.getCheckLike); //like
+
+router.get("/ajaxSave",controller.getAjaxSave); //save
+
+router.get("/ajaxFollow",controller.getAjaxFollow); //follow
+
+router.get("/ajaxComment",controller.getAjaxComment); //comment
+
+// router.post("/ajaxCreatePost", multer(multerConf).single('profilePic'), controller.getNewPost) //create post
 
 module.exports = router;

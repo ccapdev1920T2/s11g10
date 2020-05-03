@@ -53,23 +53,65 @@ $(document).ready(function()
     }); 
 
 
+
+
+
+
+
+
    $('.smallbutton').on('click', '.like', function()
     {
 
       var postid = $(this).val();
       var liker = $("#user").val();
 
-      alert("gumana");
 
-      var xhttp = new XMLHttpRequest();
-      xhttp.open('GET', "/ajax", true);
+          $.get("/ajaxLike",{postid : postid, liker : liker}, function(result){
+            alert("Liked");
+          });
 
 
-
-      $.get("/ajax",{postid : postid, liker : liker}, function(yon){
-        alert("woops");
-        alert(yon);  
-      });
 
     });
+
+
+      $('.smallbutton').on('click', '.dislike', function()
+    {
+
+      var postid = $(this).val();
+      var disliker = $("#user").val();
+      var count = postid + "dislike";
+
+
+          $.get("/ajaxDislike",{postid : postid, disliker : disliker}, function(result){
+            // alert(result.toString());
+            // $("count").val() = result.toString();
+          });
+
+
+
+    });
+
+  // $("#newPostButton").click(function(){
+  //   var postTitle = $("#newPostTitle").val();
+  //   var content = $("#newPostContent").val();
+
+  //    try{
+  //           var formData = new FormData();
+  //           var totalFiles = document.getElementById('file-upload').files.length;
+  //           for (var i = 0; i < totalFiles; i++) {
+  //               var file = document.getElementById('file-upload').files[i];
+  //               formData.append("filetoupload", file);
+  //           }
+
+  //           $.get("/ajaxCreatePost", formData, function(result){
+  //             alert("file uploaded");
+  //           });
+
+  //    } catch (e){
+  //       alert("File Upload Error" + e.message);
+  //    }
+  // });
+
+
 });

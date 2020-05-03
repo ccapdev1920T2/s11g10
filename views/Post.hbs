@@ -90,56 +90,68 @@ and open the template in the editor.
 
 
 
-                        <input type="hidden" name="liker" value="{{username}}" id="liker">
-                        <input type="hidden" name="postid" value="{{post.postid}}" id="likepostid">
+                        <input type="hidden" name="liker" value="{{username}}" id="liker"> 
+                        <input type="hidden" name="postid" value="{{post._id}}" id="likepostid">
 
   {{#if like}}                      
-                        <button type="button" class="btn btn-func" id="active" onclick="location.href='/like/{{post._id}}/{{username}}';">
+                        <button type="button" class="btn btn-func likepost" id="active" >
                             <image src="/images/icons/thumbs-up.svg" class="postIcons"> &nbsp;
                             Like
                         </button>
+                        <label id="likesformat"><a id="likes">{{post.nLikes}}</a> Like/s</label>
 {{else}}
-                        <button type="button" class="btn btn-func" id="dislike" onclick="location.href='/like/{{post._id}}/{{username}}';">
+                        <button type="button" class="btn btn-func likepost" id="like">
                             <image src="/images/icons/thumbs-up.svg" class="postIcons"> &nbsp;
                             Like
                         </button>
+                        <label id="likesformat"><a id="likes">{{post.nLikes}}</a>Like/s</label>
 {{/if}}
+
+
+
+
+
 
 
 {{#if dislike}}
-                        <button type="button" class="btn btn-func" id="active" onclick="location.href='/dislike/{{post._id}}/{{username}}';">
+                        <button type="button" class="btn btn-func dislikepost" id="active" >
                             <image src="/images/icons/thumbs-down.svg" class="postIcons"> &nbsp;
                             Dislike
                         </button>
+                        <label id="likesformat"><a id="dislikes">{{post.nDislikes}}</a> Dislike/s</label>
 {{else}}
-                        <button type="button" class="btn btn-func" id="dislike" onclick="location.href='/dislike/{{post._id}}/{{username}}';">
+                        <button type="button" class="btn btn-func dislikepost" id="dislike">
                             <image src="/images/icons/thumbs-down.svg" class="postIcons"> &nbsp;
                             Dislike
                         </button>
+                        <label id="likesformat"><a id="dislikes">{{post.nDislikes}}</a> Dislike/s</label>
 {{/if}}
+
+
+
 
 
 {{#if passed}}
 
 {{#if saved}}
-                        <button type="button" class="btn btn-func" id="active" onclick="location.href='/save/{{post._id}}/{{username}}/{{post.postbyName}}';">
+                        <button type="button" class="btn btn-func save" id="active2" >
                             <image src="/images/icons/bookmark2.svg" class="postIcons"> &nbsp;
                             Save
                         </button>
 {{else}}
-                        <button type="button" class="btn btn-func" id="none" onclick="location.href='/save/{{post._id}}/{{username}}/{{post.postbyName}}';">
+                        <button type="button" class="btn btn-func save" id="none">
                             <image src="/images/icons/bookmark2.svg" class="postIcons"> &nbsp;
                             Save
                         </button>
 {{/if}}
 
 {{#if followed}}
-                        <button type="button" class="btn btn-func" id="active" onclick="location.href='/follow/{{post._id}}/{{username}}/{{post.postbyName}}';">
+                        <button type="button" class="btn btn-func follow" id="active3" >
                             <image src="/images/icons/bell2.svg" class="postIcons"> &nbsp;
                             Follow
                         </button>  
 {{else}}
-                        <button type="button" class="btn btn-func" id="none" onclick="location.href='/follow/{{post._id}}/{{username}}/{{post.postbyName}}';">
+                        <button type="button" class="btn btn-func follow" id="none" >
                             <image src="/images/icons/bell2.svg" class="postIcons"> &nbsp;
                             Follow
                         </button>  
@@ -205,17 +217,20 @@ and open the template in the editor.
                 
                 <div id="postComment">
                     <h2>Comments: </h2>
-                    <form id="commentForm" class="pCommentContain" method="post">
+
                         <div id="pCommentContain">
-                             <textarea form="commentForm" class="pCommentBox" placeholder="Comment here" name="comment"></textarea>
+                             <textarea form="commentForm" class="pCommentBox" placeholder="Comment here" name="comment" id="comment"></textarea>
                             <div id="ppp">
-                                <button type="submit" form="commentForm" class="btn btn-comment">Comment</button>
+                                <button class="btn btn-comment">Comment</button>
                             </div>                       
                         </div>
                         <input type="hidden" name="commenter" value="{{username}}">
-                        <input type="hidden" name="commentto" value="{{post.postbyName}}">
-                    </form>
+                        <input type="hidden" id="commentto" name="commentto" value="{{post.postbyName}}">
+
                     
+
+
+
                     <div class="media" id="postedComment">
 {{#each comment}}               
                         <div class="comments">
@@ -232,6 +247,21 @@ and open the template in the editor.
                             </div>
                         </div>
 {{/each}}            
+
+<!--                         <div class="comments">
+                            <a href="/Profile/{{this.commenter}}">{{this.commenter}}</a>
+                            <label > commented {{this.commentDate}} {{this.commentTime}} </label>
+                            <p class="commentText">{{this.comment}}</p>
+
+                            <div class="collapse" id="collapseReply">
+                                <form id="replyForm">    
+                                    <div class="card-reply">
+                                           <textarea class="pCommentReply" id="userReply" placeholder="Comment here"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> -->
+
 <!--                         <div class="comments">
                             <a href="Profile">jHoseNair</a>
                             <label > commented 03/11/20 12:20AM </label>
@@ -319,7 +349,6 @@ and open the template in the editor.
         
         
         <!--Bootstrap-->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </body>

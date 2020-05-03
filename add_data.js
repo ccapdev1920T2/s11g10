@@ -92,45 +92,45 @@ var post = {
 db.insertOne("Posts", post);
 
 
-var post = {
-	postbyName 	: "y2aquino",
-	postTitle	: "This is one Post Title2",
-	postusericon : "/images/default.png",
-	content		: "This is the content of the post. I hope this pops up and it is correct.",
-	nLikes  : 0,
-    nDislikes : 0,
-	postDate		: "10/11/1010",
-	postTime : "4:30"
-}
+// var post = {
+// 	postbyName 	: "y2aquino",
+// 	postTitle	: "This is one Post Title2",
+// 	postusericon : "/images/default.png",
+// 	content		: "This is the content of the post. I hope this pops up and it is correct.",
+// 	nLikes  : 0,
+//     nDislikes : 0,
+// 	postDate		: "10/11/1010",
+// 	postTime : "4:30"
+// }
 
-db.insertOne("Posts", post);
+// db.insertOne("Posts", post);
 
-var post = {
-	postbyName 	: "yenwich",
-	postTitle	: "This is one Post Title3",
-	postusericon : "/images/default.png",
-	content		: "This is the content of the post. I hope this pops up and it is correct.",
-	image 		: [{
-		img : "https://ewedit.files.wordpress.com/2018/06/switch_supersmashbrosultimate_scrn01_e3_bmp_jpgcopy.jpg"
-	}],
-	nLikes  : 0,
-    nDislikes : 0,
-	postDate		: "10/12/1010",
-	postTime : "4:30"
-}
+// var post = {
+// 	postbyName 	: "yenwich",
+// 	postTitle	: "This is one Post Title3",
+// 	postusericon : "/images/default.png",
+// 	content		: "This is the content of the post. I hope this pops up and it is correct.",
+// 	image 		: [{
+// 		img : "https://ewedit.files.wordpress.com/2018/06/switch_supersmashbrosultimate_scrn01_e3_bmp_jpgcopy.jpg"
+// 	}],
+// 	nLikes  : 0,
+//     nDislikes : 0,
+// 	postDate		: "10/12/1010",
+// 	postTime : "4:30"
+// }
 
-db.insertOne("Posts", post);
+// db.insertOne("Posts", post);
 
-var post = {
-	postbyName 	: "yenwich",
-	postTitle	: "This is one Post Title4",
-	postusericon : "/images/default.png",
-	content		: "This is the content of the post. I hope this pops up and it is correct.",
-	nLikes  : 0,
-    nDislikes : 0,
-	postDate		: "10/12/1010",
-	postTime : "4:30"
-}
+// var post = {
+// 	postbyName 	: "yenwich",
+// 	postTitle	: "This is one Post Title4",
+// 	postusericon : "/images/default.png",
+// 	content		: "This is the content of the post. I hope this pops up and it is correct.",
+// 	nLikes  : 0,
+//     nDislikes : 0,
+// 	postDate		: "10/12/1010",
+// 	postTime : "4:30"
+// }
 
 db.insertOne("Posts", post);
 

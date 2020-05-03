@@ -1301,9 +1301,10 @@ const indexFunctions = {
     res.redirect("/BanPlayers");
   },
 
-  getAjax : function(req,res){
+  getAjaxLike : function(req,res){
     console.log("AJAX LIKE" + req.query.liker);
 
+    var status = false;
     var postid = ObjectId(req.query.postid);
     var liker = req.query.liker;
     var query = { postid : postid, liker : liker}
@@ -1330,6 +1331,22 @@ const indexFunctions = {
       db.findOne("Likes", query, function(result){
         if(result){
           console.log("already liked");
+          console.log("will now unlike");
+          status = false;
+            db.deleteOne("Likes", query);
+            db.updateOne("Posts", { "_id" : postid}, {
+            $inc : {
+              nLikes : -1
+            }
+          });
+
+          db.findOne("Posts", {"_id" : postid}, function(post){
+            console.log("fouind the post");
+            res.send({
+              status : status,
+              post : post
+            });
+          });
         }
         else{
           console.log("like successful");
@@ -1339,6 +1356,9 @@ const indexFunctions = {
             likeDate : date,
             likeTime : time
           });
+
+          status = true;
+
           db.updateOne("Posts", { "_id" : postid}, {
           $inc : {
             nLikes : 1
@@ -1362,13 +1382,298 @@ const indexFunctions = {
               date : date,
               time : time
             });
+
+            res.send({
+              status : status,
+              post : post
+            });
           });
         }
       });
     });
 
-  }
+  },
 
+  getAjaxDislike : function(req,res){
+    var status = false;
+    var postid = ObjectId(req.query.postid);
+    var disliker = req.query.disliker;
+    var d = new Date();
+    var date = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
+    if(d.getMinutes() < 10){
+            var time = d.getHours() + ":0" + d.getMinutes();
+          }else{
+            var time = d.getHours() + ":" + d.getMinutes();
+          }
+    var query = { postid : postid, liker : disliker}
+    var query2 = { postid : postid, disliker : disliker}
+
+    
+
+
+
+    db.findOne("Likes", query, function(result2){
+      if(result2){
+        console.log("DELETE LIKE");
+        db.deleteOne("Likes", query);
+        db.updateOne("Posts", { "_id" : postid}, {
+          $inc : {
+            nLikes : -1
+          }
+        });
+      }
+      db.findOne("Dislikes", query2, function(result){
+        if(result){
+          console.log("already disliked");
+          status = false;
+          db.deleteOne("Dislikes", query2);
+          db.updateOne("Posts", { "_id" : postid}, {
+            $inc : {
+              nDislikes : -1
+            }
+          });
+          db.findOne("Posts", {"_id" : postid}, function(post){
+            console.log("fouind the post");
+            res.send({
+              status : status,
+              post : post
+            });
+          });
+
+
+
+        }
+        else{
+          status = true;
+          console.log("dislike successful");
+
+          db.insertOne("Dislikes", {
+            disliker   : disliker,
+            postid  : postid,
+            dislikeDate : date,
+            dislikeTime : time
+          });
+          db.updateOne("Posts", { "_id" : postid}, {
+          $inc : {
+            nDislikes : 1
+          }
+          });
+
+          //create notif 
+          db.findOne("Posts", {"_id" : postid}, function(post){
+            var postbyName = post.postbyName;
+
+            db.insertOne("Notifications", {
+              notifyTo : postbyName,
+              postid : postid,
+              action : "disliked",
+              actionby : disliker,
+              actionbyIcon : req.session.user.pic,
+              date : date,
+              time : time
+            });
+            console.log(post.nDislikes);
+            res.send({
+              status : status,
+              post : post
+            });
+          });
+          }
+      });
+    });
+    
+  },
+
+  getCheckDislike : function(req,res){
+    var postid = ObjectId(req.query.postid);
+    var disliker = req.query.disliker;
+    db.findOne("Posts",{"_id" : postid}, function(post){
+        db.findOne("Dislikes", {postid : postid, disliker : disliker}, function(dislike){
+          if(dislike){
+            res.send({
+              status : true,
+              post : post
+            });
+          }
+          else{
+            res.send({
+              status : false,
+              post : post
+            });
+          }
+        });
+      });
+  },
+
+  getCheckLike : function(req,res){
+    var postid = ObjectId(req.query.postid);
+    var liker = req.query.disliker;
+    db.findOne("Posts",{"_id" : postid}, function(post){
+        db.findOne("Likes", {postid : postid, liker : liker}, function(like){
+          if(like){
+            res.send({
+              status : true,
+              post : post
+            });
+          }
+          else{
+            res.send({
+              status : false,
+              post : post
+            });
+          }
+        });
+      });
+  },
+
+  getAjaxSave : function(req,res){
+      db.findOne("Saved", { "post._id" :ObjectId(req.query.postid) , savetouser : req.query.saveto } , function(result){
+      console.log("WHERE DID U GO " + result);
+      if(result){
+        console.log("unsave");
+        db.deleteOne("Saved", { "post._id" :ObjectId(req.query.postid), savetouser : req.query.saveto });
+        res.send(false);
+      }
+      else{
+        console.log("saved");
+        db.findOne("Posts", { "_id" :  ObjectId(req.query.postid)}, function(post){ 
+          db.insertOne("Saved", {
+            savetouser    : req.query.saveto,
+            post : post
+            });
+            res.send(true);
+          });
+        
+      }
+    });
+
+
+    // res.redirect("/post/"+ req.params.postid);
+  },
+
+  getAjaxFollow : function(req,res){
+      db.findOne("Followed", { "post._id" :ObjectId(req.query.postid) , savetouser : req.query.saveto } , function(result){
+      console.log("WHERE DID U GO " + result);
+      if(result){
+        console.log("unfollowed");
+        db.deleteOne("Followed", { "post._id" :ObjectId(req.query.postid), savetouser : req.query.saveto });
+        res.send(false);
+      }
+      else{
+        console.log("followed");
+        db.findOne("Posts", { "_id" :  ObjectId(req.query.postid)}, function(post){ 
+          db.insertOne("Followed", {
+            savetouser    : req.query.saveto,
+            post : post
+            });
+            res.send(true);
+          });
+        
+      }
+    });
+
+
+    // res.redirect("/post/"+ req.params.postid);
+  },
+
+
+  getAjaxComment : function(req,res){
+
+        var comment = req.query.comment;
+        var commenter = req.query.commenter;
+        var commentto = req.query.commentto;
+        var d = new Date();
+        var date = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
+        if(d.getMinutes() < 10){
+            var time = d.getHours() + ":0" + d.getMinutes();
+          }else{
+            var time = d.getHours() + ":" + d.getMinutes();
+          }
+        
+        if(comment && commenter && commentto){
+                if(req.query.comment != ""){
+                  db.insertOne("Comments", {
+                    postID : ObjectId(req.query.objectid),
+                    comment : comment,
+                    commenter : commenter,
+                    commentto : commentto,
+                    commentDate : date,
+                    commentTime : time
+                  })
+
+                  db.insertOne("Notifications", {
+                      notifyTo : commentto,
+                      postid : ObjectId(req.query.objectid),
+                      action : "commented on",
+                      actionby : commenter,
+                      actionbyIcon : req.session.user.pic,
+                      date : date,
+                      time : time
+                    });
+                  // res.redirect("/Post/" + ObjectId(req.params.objectid));
+                  res.send({
+                    status : true,
+                    post : {
+                        comment : comment,
+                        commenter : commenter,
+                        commentto : commentto,
+                        commentDate : date,
+                        commentTime : time
+                    }
+                  });
+                }
+                else{
+                  // res.redirect("/Post/" + ObjectId(req.params.objectid));
+                  res.send({
+                    status : false
+                  });
+                }
+        }
+        else{
+          res.send({
+            status : false});
+        }
+  },
+
+  // getNewpost : function(req,res){
+  //      var title = req.query.postTitle;
+  //   var content = req.query.content;
+  //   var d = new Date();
+  //   var date = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
+
+
+  //   if(d.getMinutes() < 10){
+  //     var time = d.getHours() + ":0" + d.getMinutes();
+  //   }else{
+  //     var time = d.getHours() + ":" + d.getMinutes();
+  //   }
+  //     if(req.file){
+  //       req.body.postPic = req.file.filename;
+  //       var img = "/images/" + req.body.postPic;
+  //       //insert one to posts
+  //       db.insertOne("Posts", {
+  //       postbyName : req.session.user.uname,
+  //       postTitle  : title,
+  //       postusericon : req.session.user.pic,
+  //       content : content,
+  //       image   : [{ img : img}] , 
+  //       nLikes  : 0,
+  //       nDislikes : 0,
+  //       postDate: date,
+  //       postTime : time
+  //       });
+  //     }
+  //     else{
+  //       db.insertOne("Posts", {
+  //       postbyName : req.session.uname,
+  //       postTitle  : title,
+  //       postusericon : req.session.user.pic,
+  //       content : content,
+  //       postDate: date,
+  //       postTime : time
+  //       });
+  //     }
+  // }
 }
 
 module.exports = indexFunctions;

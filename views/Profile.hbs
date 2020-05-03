@@ -19,7 +19,8 @@ and open the template in the editor.
     </head>
     <body>
          <div class="navbar navbar-light">
-            
+            <input type="hidden"  id="user" value="{{username}}">
+
             <image src="/public/images/ssbulogo.png" class="navbar-brand" alt="brand logo">
             
             <form class="form-inline" method="post" id="searchform">
@@ -105,8 +106,8 @@ and open the template in the editor.
                 <div id="divCon2" class="divcon2">
 
 {{#each posts}}
-                <div id="newsContainer" onclick="location.href='/post/{{_id}}';">
-                    <div class="extra">
+                <div id="newsContainer">
+                    <div class="extra"  onclick="location.href='/post/{{_id}}';">
                         <label id="nfPoster">posted by/ <img src="{{postusericon}}" id="postusericon">  <a href="/Profile/{{postbyName}}" class="profLink">@{{postbyName}}</a> {{postDate}} {{postTime}}</label>
                         <h3 id="newTitle">{{this.postTitle}}</h3>
                         <p id="newsContent">
@@ -117,13 +118,13 @@ and open the template in the editor.
     {{/each}}
                     </div>
                     
-                    <div class="btn-group nfButtons"  role="group" aria-label="Basic podt functions">
-                        <button type="button" class="btn btn-icon" id="like">
+                    <div class="btn-group nfButtons smallbutton"  role="group" aria-label="Basic podt functions">
+                        <button type="button" class="btn like" value={{_id}}>
                             <image src="/images/icons/thumbs-up.svg" class="postIcons">
                         </button>
                         {{nLikes}}
-                        <button type="button" class="btn btn-icon" id="dislike">
-                            <image src="/images/icons/thumbs-down.svg" class="postIcons">
+                        <button type="button" class="btn btn-icon dislike" value={{_id}}>
+                            <image src="/images/icons/thumbs-down.svg" class="postIcons" >
                         </button>
                         {{nDislikes}}
                         <button type="button" class="btn btn-icon" id="commentButton">
@@ -279,7 +280,7 @@ and open the template in the editor.
         
         
         <!--Bootstrap-->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<!--         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </body>
