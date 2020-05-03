@@ -45,12 +45,23 @@ $(document).ready(function()
             if (result.status){
               $('#like').css('background-color', '#00AF33');
               $('#active').css('background-color', '#00AF33');
+
+                $.get("/checkDislike", {postid : postid, disliker : liker}, function(result){
+                if(result.status){
+                   $('#dislike').css('background-color', '#00AF33');
+                   $('#active').css('background-color', '#00AF33');
+                   $("#dislikes").text(result.post.nDislikes);
+                }
+                else{
+                  $('#dislike').css('background-color', '#FFFFFF');
+                  $('#active').css('background-color', '#FFFFFF');
+                  $("#dislikes").text(result.post.nDislikes);
+                }
+              });
             }
             else{
               $('#like').css('background-color', '#FFFFFF');
               $('#active').css('background-color', '#FFFFFF');
-            }
-
 
               $.get("/checkDislike", {postid : postid, disliker : liker}, function(result){
               if(result.status){
@@ -64,6 +75,8 @@ $(document).ready(function()
                 $("#dislikes").text(result.post.nDislikes);
               }
             });
+            }
+
           });
     });
 
@@ -77,13 +90,8 @@ $(document).ready(function()
             if (result.status){
                $('#dislike').css('background-color', '#00AF33');
                  $('#active').css('background-color', '#00AF33');
-            }
-            else{
-              $('#dislike').css('background-color', '#FFFFFF');
-                $('#active').css('background-color', '#FFFFFF');
-            }
 
-            $.get("/checkLike", {postid : postid, liker : disliker}, function(result){
+                 $.get("/checkLike", {postid : postid, liker : disliker}, function(result){
               if(result.status){
                  $('#like').css('background-color', '#00AF33');
                  $('#active').css('background-color', '#00AF33');
@@ -95,6 +103,26 @@ $(document).ready(function()
                 $("#likes").text(result.post.nLikes);
               }
             });
+            }
+            else{
+              $('#dislike').css('background-color', '#FFFFFF');
+                $('#active').css('background-color', '#FFFFFF');
+
+                $.get("/checkLike", {postid : postid, liker : disliker}, function(result){
+              if(result.status){
+                 $('#like').css('background-color', '#00AF33');
+                 $('#active').css('background-color', '#00AF33');
+                 $("#likes").text(result.post.nLikes);
+              }
+              else{
+                $('#like').css('background-color', '#FFFFFF');
+                $('#active').css('background-color', '#FFFFFF');
+                $("#likes").text(result.post.nLikes);
+              }
+            });
+            }
+
+            
           });
     });
 
